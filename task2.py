@@ -1,8 +1,3 @@
-import sys
-import requests
-import os.path
-
-
 def inputfile_to_array(input_file):
     with open(input_file) as f:
         lines = f.read().splitlines()
