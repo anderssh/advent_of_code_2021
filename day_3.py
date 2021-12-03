@@ -76,8 +76,5 @@ def get_co2_scrubber_rating(binary_list):
 def get_life_support_rating(binary_list):
     return (get_oxygen_generator_rating(binary_list) * get_co2_scrubber_rating(binary_list))
 
-
-#def get_life_support_rating(binary_list):
-#    get_oxygen_generator_rating(binary_list)
 print ("First answer: ", power_consumpsion(binary_list))
 print ("Second answer: ", get_life_support_rating(binary_list))
