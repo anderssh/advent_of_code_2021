@@ -1,15 +1,8 @@
-import sys
-import requests
-import os.path
+from utils import inputfile_to_array, get_input_file
 
+get_input_file(1)
 
-def inputfile_to_array(input_file):
-    with open(input_file) as f:
-        lines = f.read().splitlines()
-    lines_as_array = [(line) for line in lines]
-    return lines_as_array
-
-number_list = [int(item) for item in inputfile_to_array("input_1")]
+number_list = [int(item) for item in inputfile_to_array("inputs/input_day_1.txt")]
 
 def calculate_num_increases(number_list):
   num_increases = 0

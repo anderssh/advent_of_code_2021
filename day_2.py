@@ -1,11 +1,8 @@
-def inputfile_to_array(input_file):
-    with open(input_file) as f:
-        lines = f.read().splitlines()
-    lines_as_array = [(line) for line in lines]
-    return lines_as_array
+from utils import get_input_file, inputfile_to_array
 
-coordinate_list = inputfile_to_array("input_2")
+get_input_file(2)
 
+coordinate_list = inputfile_to_array("inputs/input_day_2.txt")
 def get_pos(coordinate_list):
   vert_pos = 0
   horiz_pos = 0
