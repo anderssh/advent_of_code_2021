@@ -43,3 +43,8 @@ def remove_empty_lines_and_concat(list_with_empty_lines, space_separated = True)
             if i == len(list_with_empty_lines)-1:
                 line_list.append(element)
     return line_list
+
+def pretty_print_table(table):
+    for i in table:
+        print (i)
+    print("\n")
