@@ -28,7 +28,7 @@ def efficient_get_number_of_fish_after_num_days(fish_list, num_days=80):
         smart_fish_list[i] +=1
     for i in range(num_days):
         zeros = smart_fish_list[0] 
-        smart_fish_list = smart_fish_list[1:] + smart_fish_list[:1]
+        smart_fish_list = smart_fish_list[1:] + smart_fish_list[:1] # Rotate list one place to the left
         smart_fish_list[6] += zeros
     return sum(smart_fish_list)
 
