@@ -2,7 +2,7 @@ from utils import get_input_file, inputfile_to_array
 
 get_input_file(8)
 
-input_list = inputfile_to_array("inputs/input_day_8_test.txt")
+input_list = inputfile_to_array("inputs/input_day_8.txt")
 
 def get_input_and_output_signal(input_list):
     input_signal = []
@@ -54,9 +54,9 @@ def identify_digits(single_input_signal):
     six = get_six(six_candidates, right_top_col)
     nine_candidates.remove(six)
     zero_candidates.remove(six)
-    top_left_col = get_top_left_col_based_on_nine_and_six_candidates(nine_candidates, middle_row_candidates)
-    middle_row_candidates.remove(top_left_col)
-    middle_row = middle_row_candidates[0]
+    middle_row = get_middle_row_based_on_nine_and_zero_candidates(nine_candidates, middle_row_candidates)
+    top_left_col_candidates.remove(middle_row)
+    top_left_col = top_left_col_candidates[0]
     nine = get_nine(nine_candidates, middle_row)
     zero_candidates.remove(nine)
     zero = zero_candidates[0]
@@ -106,12 +106,12 @@ def get_right_top_col(five, two_candidates):
         if char not in five:
             return char
 
-def get_top_left_col_based_on_nine_and_six_candidates(nine_candidates, middle_row_candidates):
+def get_middle_row_based_on_nine_and_zero_candidates(nine_candidates, middle_row_candidates):
     ''' The one of the middle_row_candidates that are only in one of them gives a middle row
     '''
     for middle_row_candidate in middle_row_candidates:
         for nine_candidate in nine_candidates:
-            if middle_row_candidate not in nine_candidates:
+            if middle_row_candidate not in nine_candidate:
                 return middle_row_candidate
 
 def remove_if_both_there(candidate_list, char_list):
@@ -154,7 +154,7 @@ def get_top_row_candidates(four, seven):
     return candidates
 
 def count_unique_digits_in_output(input_list):
-    input_signal, output_signal = get_input_and_output_signal(input_list)
+    _, output_signal = get_input_and_output_signal(input_list)
     relevant_lengths = [2,4,3,7] # corresponding to 1,4,7,8
     count  = 0
     for singel_output_signal in output_signal:
@@ -173,18 +173,13 @@ def calculate_number(digits, single_output_signal):
             if val == sorted_seq:
                 #print(str(i))
                 number_as_string += str(i)
-    print(number_as_string)
     return int(number_as_string)
 
-input_list = ["fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb"]
-#input_list = ["acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"]
-#print("First answer: ", count_unique_digits_in_output(input_list))
 input_signal, output_signal = get_input_and_output_signal(input_list)
 sum = 0
 
 for i in range(len(input_signal)):
     digits = identify_digits(input_signal[i])
-    print(digits)
     sum += calculate_number(digits, output_signal[i])
-print("lengde", len(input_signal))
-print (sum)
+print("Answer 1: ", count_unique_digits_in_output(input_list))
+print("Answer 2: ", sum)
